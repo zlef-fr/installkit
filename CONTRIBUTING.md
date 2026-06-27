@@ -58,10 +58,16 @@ add a token to the `map` in `detectInApp(ua)`:
 > "X11" UA token, so every Linux desktop visitor was wrongly treated as an in-app
 > browser. Prefer a unique vendor token and test against real UA strings.
 
-### 2. `10-i18n.js` — write the step copy
+### 2. i18n files — write the step copy
 
-Add keyed strings to **both** `en` and `fr`. `{app}` and `{browser}` are
-interpolated. Example:
+The widget ships **12 languages**: `en` + `fr` live in `sdk/src/10-i18n.js`; the
+other ten (`es de it pt nl ru pl ja ko zh`) are in `sdk/src/11-i18n-extra-a.js`
+and `sdk/src/12-i18n-extra-b.js` (each assigns `I18N.<code> = { … }`). Add your
+key to **every** language you can — `en` is the fallback for anything missing, so
+a partial PR is fine and we'll fill the rest. `{app}` and `{browser}` are
+interpolated, and **quoted button labels should match what the browser actually
+shows in that language** (e.g. iOS Safari is "Add to Home Screen" / "Sur l'écran
+d'accueil" / "Zum Home-Bildschirm" / "ホーム画面に追加"). Example:
 
 ```js
 // en
@@ -98,6 +104,16 @@ The coverage table on the landing is a separate, plain data array — update it 
 docs match reality: `public/js/landing.js` → the `MATRIX` constant
 (`[emoji, 'Platform · Browser', 'short path', tag]`, where `tag` is
 `native|manual|redir|unsup|installed`).
+
+### Adding a whole new language
+
+1. **Widget:** add a new `I18N.<code> = { … }` block (copy the `en` keys) in a
+   `sdk/src/1*-i18n-*.js` file.
+2. **Landing:** add the same `<code>` to `public/js/i18n.js` — a row in `LANGS`
+   (`['<code>','🏳️','Native name']`) and a matching object in `I18N`.
+3. The widget auto-detects via the `zl-lang` cookie → `navigator.language` → `en`;
+   the landing's flag dropdown is generated from `LANGS`, so no other wiring is
+   needed.
 
 ---
 
