@@ -74,12 +74,12 @@ ways to ship it:
 **1 · Embed from a free CDN — zero infrastructure**
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/zlef-fr/installkit@v1.0.1/public/v1/install-kit.js"
+<script src="https://cdn.jsdelivr.net/gh/zlef-fr/installkit@v1.0.2/public/v1/install-kit.js"
         data-app-name="Your App"></script>
 ```
 
 jsDelivr serves the file straight from the public repo, globally cached, free.
-Pin a tag (`@v1.0.1`) for an immutable URL. Statically (cdn.statically.io/gh/…)
+Pin a tag (`@v1.0.2`) for an immutable URL. Statically (cdn.statically.io/gh/…)
 works the same way.
 
 **2 · Self-host the file — any static host**

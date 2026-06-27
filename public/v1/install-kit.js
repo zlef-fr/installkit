@@ -75,6 +75,7 @@ var I18N = {
     already_installed_title: 'You’re all set',
     already_installed_body: '{app} is already installed on this device. Launch it from your home screen.',
     open_app: 'Open the app',
+    install_anyway: 'Install anyway',
     unsupported_title: 'Installing isn’t supported here',
     unsupported_body: 'This browser can’t install web apps. Open {app} in another browser to add it to your device.',
     inapp_title: 'Open in your browser first',
@@ -142,6 +143,7 @@ var I18N = {
     already_installed_title: 'Tout est prêt',
     already_installed_body: '{app} est déjà installée sur cet appareil. Lancez-la depuis votre écran d’accueil.',
     open_app: 'Ouvrir l’app',
+    install_anyway: 'Installer quand même',
     unsupported_title: 'Installation non prise en charge ici',
     unsupported_body: 'Ce navigateur ne peut pas installer d’app web. Ouvrez {app} dans un autre navigateur pour l’ajouter.',
     inapp_title: 'Ouvrez d’abord dans votre navigateur',
@@ -221,6 +223,7 @@ I18N.es = {
   already_installed_title: 'Todo listo',
   already_installed_body: '{app} ya está instalada en este dispositivo. Ábrela desde tu pantalla de inicio.',
   open_app: 'Abrir la app',
+  install_anyway: "Instalar de todos modos",
   unsupported_title: 'La instalación no es compatible aquí',
   unsupported_body: 'Este navegador no puede instalar apps web. Abre {app} en otro navegador para añadirla.',
   inapp_title: 'Ábrelo primero en tu navegador',
@@ -279,6 +282,7 @@ I18N.de = {
   already_installed_title: 'Alles bereit',
   already_installed_body: '{app} ist auf diesem Gerät bereits installiert. Öffne sie über deinen Home-Bildschirm.',
   open_app: 'App öffnen',
+  install_anyway: "Trotzdem installieren",
   unsupported_title: 'Installation hier nicht möglich',
   unsupported_body: 'Dieser Browser kann keine Web-Apps installieren. Öffne {app} in einem anderen Browser, um sie hinzuzufügen.',
   inapp_title: 'Zuerst im Browser öffnen',
@@ -337,6 +341,7 @@ I18N.it = {
   already_installed_title: 'Tutto pronto',
   already_installed_body: '{app} è già installata su questo dispositivo. Aprila dalla schermata Home.',
   open_app: 'Apri l’app',
+  install_anyway: "Installa comunque",
   unsupported_title: 'Installazione non supportata qui',
   unsupported_body: 'Questo browser non può installare web app. Apri {app} in un altro browser per aggiungerla.',
   inapp_title: 'Apri prima nel tuo browser',
@@ -395,6 +400,7 @@ I18N.pt = {
   already_installed_title: 'Tudo pronto',
   already_installed_body: '{app} já está instalado neste dispositivo. Abra-o pela tela de início.',
   open_app: 'Abrir o app',
+  install_anyway: "Instalar mesmo assim",
   unsupported_title: 'Instalação não suportada aqui',
   unsupported_body: 'Este navegador não consegue instalar web apps. Abra {app} em outro navegador para adicioná-lo.',
   inapp_title: 'Abra primeiro no seu navegador',
@@ -453,6 +459,7 @@ I18N.nl = {
   already_installed_title: 'Helemaal klaar',
   already_installed_body: '{app} is al op dit apparaat geïnstalleerd. Open het vanaf je beginscherm.',
   open_app: 'App openen',
+  install_anyway: "Toch installeren",
   unsupported_title: 'Installeren wordt hier niet ondersteund',
   unsupported_body: 'Deze browser kan geen web-apps installeren. Open {app} in een andere browser om het toe te voegen.',
   inapp_title: 'Open eerst in je browser',
@@ -516,6 +523,7 @@ I18N.ru = {
   already_installed_title: 'Всё готово',
   already_installed_body: '{app} уже установлено на этом устройстве. Откройте его с главного экрана.',
   open_app: 'Открыть приложение',
+  install_anyway: "Всё равно установить",
   unsupported_title: 'Установка здесь недоступна',
   unsupported_body: 'Этот браузер не может устанавливать веб-приложения. Откройте {app} в другом браузере, чтобы добавить его.',
   inapp_title: 'Сначала откройте в браузере',
@@ -574,6 +582,7 @@ I18N.pl = {
   already_installed_title: 'Wszystko gotowe',
   already_installed_body: '{app} jest już zainstalowana na tym urządzeniu. Otwórz ją z ekranu głównego.',
   open_app: 'Otwórz aplikację',
+  install_anyway: "Zainstaluj mimo to",
   unsupported_title: 'Instalacja nie jest tu obsługiwana',
   unsupported_body: 'Ta przeglądarka nie może instalować aplikacji internetowych. Otwórz {app} w innej przeglądarce, aby ją dodać.',
   inapp_title: 'Najpierw otwórz w przeglądarce',
@@ -632,6 +641,7 @@ I18N.ja = {
   already_installed_title: '準備完了',
   already_installed_body: '{app} はこのデバイスにすでにインストールされています。ホーム画面から起動してください。',
   open_app: 'アプリを開く',
+  install_anyway: "それでもインストール",
   unsupported_title: 'ここではインストールできません',
   unsupported_body: 'このブラウザはウェブアプリをインストールできません。別のブラウザで {app} を開いて追加してください。',
   inapp_title: 'まずブラウザで開いてください',
@@ -690,6 +700,7 @@ I18N.ko = {
   already_installed_title: '준비 완료',
   already_installed_body: '{app}이(가) 이미 이 기기에 설치되어 있습니다. 홈 화면에서 실행하세요.',
   open_app: '앱 열기',
+  install_anyway: "그래도 설치",
   unsupported_title: '여기서는 설치할 수 없습니다',
   unsupported_body: '이 브라우저는 웹 앱을 설치할 수 없습니다. 다른 브라우저에서 {app}을(를) 열어 추가하세요.',
   inapp_title: '먼저 브라우저에서 열기',
@@ -748,6 +759,7 @@ I18N.zh = {
   already_installed_title: '一切就绪',
   already_installed_body: '{app} 已安装在此设备上。请从主屏幕打开它。',
   open_app: '打开应用',
+  install_anyway: "仍然安装",
   unsupported_title: '此处不支持安装',
   unsupported_body: '此浏览器无法安装网页应用。请在其他浏览器中打开 {app} 以添加。',
   inapp_title: '请先在浏览器中打开',
@@ -1160,6 +1172,10 @@ function widgetCSS() {
   .note svg{ width:20px; height:20px; flex:0 0 auto; color:var(--ik-accent); margin-top:1px; }
   .note .nt{ font-size:14.5px; color:var(--ik-soft); }
 
+  .ik-link{ display:block; margin:14px auto 0; padding:4px; background:none; border:none;
+    color:var(--ik-muted); font:500 13px/1 var(--ik-font); cursor:pointer;
+    text-decoration:underline; text-underline-offset:3px; transition:color .15s; }
+  .ik-link:hover{ color:var(--ik-text); }
   .foot{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:18px; }
   .ghost{ border:1px solid var(--ik-line); background:transparent; color:var(--ik-soft);
     padding:9px 14px; border-radius:10px; font:550 14px/1 var(--ik-font); cursor:pointer; min-height:40px; }
@@ -1231,6 +1247,12 @@ class InstallKitEl extends HTMLElement {
   open() {
     if (this._scrim) return;
     var e = this._env = detectEnv(); // re-detect (prompt may have arrived since)
+    // "Install anyway": the visitor overrode an already-installed verdict (a false
+    // positive, or they want it on this browser too) → resolve the real install path.
+    if (this._forceInstall && e.method === 'installed') {
+      e = this._env = Object.assign({}, e, { standalone: false });
+      e.method = resolveMethod(e);
+    }
     var copy = sheetCopy(e);
     var self = this;
 
@@ -1259,11 +1281,14 @@ class InstallKitEl extends HTMLElement {
       sheet.appendChild(cta);
       beacon('prompt', e);
     } else if (e.method === 'installed') {
-      var note = ce('div', { class: 'note' }, [
+      sheet.appendChild(ce('div', { class: 'note' }, [
         ce('span', { html: icon('check_circle') }),
         ce('div', { class: 'nt', text: copy.body })
-      ]);
-      sheet.appendChild(note);
+      ]));
+      // discreet escape hatch — install on this browser anyway
+      var anyway = ce('button', { class: 'ik-link', type: 'button', text: t('install_anyway') });
+      anyway.addEventListener('click', function () { self._forceInstall = true; self._reopen(); });
+      sheet.appendChild(anyway);
     } else if (e.method === 'open-in-browser' || e.method === 'unsupported') {
       sheet.appendChild(ce('div', { class: 'note' }, [
         ce('span', { html: icon(e.method === 'unsupported' ? 'warn' : 'external') }),
@@ -1337,8 +1362,19 @@ class InstallKitEl extends HTMLElement {
     emit('dismiss', this._env);
   }
 
+  // Rebuild the sheet in place (no exit animation) — used by "Install anyway".
+  _reopen() {
+    if (this._scrim) {
+      var s = this._scrim; this._scrim = null;
+      if (this._esc) document.removeEventListener('keydown', this._esc);
+      if (s.parentNode) s.parentNode.removeChild(s);
+    }
+    this.open();
+  }
+
   close() {
     if (!this._scrim) return;
+    this._forceInstall = false; // a fresh open starts from the real (installed) verdict
     var s = this._scrim; this._scrim = null;
     s.classList.remove('show');
     if (this._esc) document.removeEventListener('keydown', this._esc);

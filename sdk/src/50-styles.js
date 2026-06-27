@@ -87,6 +87,10 @@ function widgetCSS() {
   .note svg{ width:20px; height:20px; flex:0 0 auto; color:var(--ik-accent); margin-top:1px; }
   .note .nt{ font-size:14.5px; color:var(--ik-soft); }
 
+  .ik-link{ display:block; margin:14px auto 0; padding:4px; background:none; border:none;
+    color:var(--ik-muted); font:500 13px/1 var(--ik-font); cursor:pointer;
+    text-decoration:underline; text-underline-offset:3px; transition:color .15s; }
+  .ik-link:hover{ color:var(--ik-text); }
   .foot{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:18px; }
   .ghost{ border:1px solid var(--ik-line); background:transparent; color:var(--ik-soft);
     padding:9px 14px; border-radius:10px; font:550 14px/1 var(--ik-font); cursor:pointer; min-height:40px; }

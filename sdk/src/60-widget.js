@@ -56,6 +56,12 @@ class InstallKitEl extends HTMLElement {
   open() {
     if (this._scrim) return;
     var e = this._env = detectEnv(); // re-detect (prompt may have arrived since)
+    // "Install anyway": the visitor overrode an already-installed verdict (a false
+    // positive, or they want it on this browser too) → resolve the real install path.
+    if (this._forceInstall && e.method === 'installed') {
+      e = this._env = Object.assign({}, e, { standalone: false });
+      e.method = resolveMethod(e);
+    }
     var copy = sheetCopy(e);
     var self = this;
 
@@ -84,11 +90,14 @@ class InstallKitEl extends HTMLElement {
       sheet.appendChild(cta);
       beacon('prompt', e);
     } else if (e.method === 'installed') {
-      var note = ce('div', { class: 'note' }, [
+      sheet.appendChild(ce('div', { class: 'note' }, [
         ce('span', { html: icon('check_circle') }),
         ce('div', { class: 'nt', text: copy.body })
-      ]);
-      sheet.appendChild(note);
+      ]));
+      // discreet escape hatch — install on this browser anyway
+      var anyway = ce('button', { class: 'ik-link', type: 'button', text: t('install_anyway') });
+      anyway.addEventListener('click', function () { self._forceInstall = true; self._reopen(); });
+      sheet.appendChild(anyway);
     } else if (e.method === 'open-in-browser' || e.method === 'unsupported') {
       sheet.appendChild(ce('div', { class: 'note' }, [
         ce('span', { html: icon(e.method === 'unsupported' ? 'warn' : 'external') }),
@@ -162,8 +171,19 @@ class InstallKitEl extends HTMLElement {
     emit('dismiss', this._env);
   }
 
+  // Rebuild the sheet in place (no exit animation) — used by "Install anyway".
+  _reopen() {
+    if (this._scrim) {
+      var s = this._scrim; this._scrim = null;
+      if (this._esc) document.removeEventListener('keydown', this._esc);
+      if (s.parentNode) s.parentNode.removeChild(s);
+    }
+    this.open();
+  }
+
   close() {
     if (!this._scrim) return;
+    this._forceInstall = false; // a fresh open starts from the real (installed) verdict
     var s = this._scrim; this._scrim = null;
     s.classList.remove('show');
     if (this._esc) document.removeEventListener('keydown', this._esc);

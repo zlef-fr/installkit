@@ -5,7 +5,7 @@
 // online (cache-first on the HTML was pinning returning visitors to an old shell);
 // cache-first only for the versioned static assets (their ?v=N URL changes per
 // release, so cache-first can never serve a stale version).
-const CACHE = 'installkit-v5';
+const CACHE = 'installkit-v6';
 const SHELL = ['/', '/css/landing.css', '/js/landing.js', '/v1/install-kit.js'];
 
 self.addEventListener('install', (e) => {
