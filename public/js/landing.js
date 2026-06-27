@@ -172,4 +172,14 @@ const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersec
 document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
 /* SW (dogfood install) */
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+if ('serviceWorker' in navigator) {
+  // If a SW already controls the page, auto-reload once when a new one takes over
+  // so a content update is never pinned behind a stale cached shell.
+  if (navigator.serviceWorker.controller) {
+    let reloaded = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (reloaded) return; reloaded = true; location.reload();
+    });
+  }
+  navigator.serviceWorker.register('/sw.js').catch(() => {});
+}
