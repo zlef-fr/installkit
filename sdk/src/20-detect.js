@@ -72,12 +72,17 @@ function detectEnv() {
   var uaData = navigator.userAgentData || null;
   var maxTouch = navigator.maxTouchPoints || 0;
 
+  // "Installed and running as an app" — only trust signals that can't be
+  // produced by an ordinary browser tab. We deliberately DON'T treat
+  // display-mode:fullscreen as installed: a browser in F11 / Fullscreen API
+  // matches it, which false-positives a normal tab as "installed". minimal-ui
+  // is likewise unreliable across engines. The robust signals are standalone,
+  // window-controls-overlay (desktop installed PWA), iOS navigator.standalone,
+  // and the android-app:// referrer of a TWA.
   var standalone = false;
   try {
     standalone = (window.matchMedia && (
       matchMedia('(display-mode: standalone)').matches ||
-      matchMedia('(display-mode: fullscreen)').matches ||
-      matchMedia('(display-mode: minimal-ui)').matches ||
       matchMedia('(display-mode: window-controls-overlay)').matches)) ||
       navigator.standalone === true ||
       document.referrer.indexOf('android-app://') === 0;
