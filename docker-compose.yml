@@ -1,0 +1,9 @@
+services:
+  install:
+    build: .
+    container_name: install
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:10073:10073"
+    volumes:
+      - ./data:/app/data

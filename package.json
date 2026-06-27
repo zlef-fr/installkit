@@ -1,0 +1,15 @@
+{
+  "name": "installkit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "InstallKit — drop-in SDK widget showing accurate per-device PWA install instructions.",
+  "scripts": {
+    "build:sdk": "node sdk/build.mjs",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.8.1",
+    "express": "^4.21.2"
+  }
+}

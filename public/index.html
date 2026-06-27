@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--zlef-seo-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InstallKit — accurate “install as an app” instructions, as a drop-in widget</title>
+<meta name="description" content="Drop one script tag onto any site and visitors get the exact, correct steps to install it as an app — tuned to their real device and browser. Native one-tap where supported, precise manual steps everywhere else.">
+<link rel="canonical" href="https://install.zlef.fr/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://install.zlef.fr/">
+<meta property="og:title" content="InstallKit — accurate PWA install instructions widget">
+<meta property="og:description" content="One script tag. Every visitor sees the exact steps to install your web app on their device — iPhone, Android, desktop, even inside in-app browsers.">
+<meta property="og:image" content="https://assets.zlef.fr/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="InstallKit — accurate PWA install instructions widget">
+<meta name="twitter:description" content="Drop-in SDK that shows every visitor the exact way to install your app on their device.">
+<meta name="twitter:image" content="https://assets.zlef.fr/og-default.png">
+<link rel="icon" href="https://assets.zlef.fr/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://assets.zlef.fr/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="https://assets.zlef.fr/apple-touch-icon.png">
+<!--/zlef-seo-->
+<meta name="theme-color" content="#06060a">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="https://da.zlef.fr/tokens.css">
+<link rel="stylesheet" href="/css/landing.css?v=1">
+</head>
+<body class="zl-body">
+<div class="bg"></div>
+
+<header class="hdr">
+  <div class="inner">
+    <a class="brand" href="/" aria-label="InstallKit home">
+      <span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 4 5-4"/><path d="M5 20h14"/></svg></span>
+      InstallKit
+    </a>
+    <nav class="nav">
+      <a href="#how" class="hide-sm" data-i18n="nav_how">How it works</a>
+      <a href="#matrix" class="hide-sm" data-i18n="nav_matrix">Coverage</a>
+      <a href="#docs" data-i18n="nav_docs">Docs</a>
+      <a href="#check" data-i18n="nav_check">Check my site</a>
+      <a href="https://github.com/zlef-fr/installkit" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="wrap hero section">
+    <span class="pill"><span class="dot"></span><span data-i18n="hero_pill">One script tag · zero dependencies</span></span>
+    <h1 data-i18n="hero_h1_html">Tell every visitor <span class="grad">exactly</span> how to install your app</h1>
+    <p class="lede" data-i18n="hero_lede">InstallKit detects the real device and browser, then shows the precise steps to add your web app to the home screen — a native one-tap prompt where it’s supported, accurate manual instructions everywhere else.</p>
+    <div class="cta-row">
+      <button class="zl-btn zl-btn--primary zl-btn--lg" id="tryBtn" data-i18n="hero_try">Show me my instructions</button>
+      <a class="zl-btn zl-btn--ghost zl-btn--lg" href="#docs" data-i18n="hero_docs">Get the snippet</a>
+    </div>
+
+    <!-- live detection -->
+    <div class="detect reveal">
+      <div class="grid">
+        <div class="cell"><div class="k" data-i18n="det_device">Device</div><div class="v" id="dDevice">—</div></div>
+        <div class="cell"><div class="k" data-i18n="det_browser">Browser</div><div class="v" id="dBrowser">—</div></div>
+        <div class="cell"><div class="k" data-i18n="det_method">Install path</div><div class="v" id="dMethod">—</div></div>
+      </div>
+      <div class="verdict" id="dVerdict"><span class="muted" data-i18n="det_loading">Detecting your device…</span></div>
+    </div>
+
+    <!-- snippet -->
+    <div class="code reveal">
+      <div class="bar"><span class="fn">index.html</span><button class="copy" id="copyHero" data-i18n="copy">Copy</button></div>
+      <pre id="heroSnippet"><span class="t-cm">&lt;!-- add before &lt;/body&gt; --&gt;</span>
+<span class="t-tag">&lt;script</span> <span class="t-at">src</span>=<span class="t-str">"https://install.zlef.fr/v1/install-kit.js"</span>
+        <span class="t-at">data-app-name</span>=<span class="t-str">"Your App"</span><span class="t-tag">&gt;&lt;/script&gt;</span></pre>
+    </div>
+  </section>
+
+  <!-- HOW / FEATURES -->
+  <section class="wrap section" id="how">
+    <div class="sh"><span class="eyebrow zl-eyebrow" data-i18n="how_eye">Why InstallKit</span>
+      <h2 data-i18n="how_h2">Most install prompts are wrong half the time</h2>
+      <p data-i18n="how_p">Generic “Add to Home Screen” banners show iPhone steps to Android users and vice-versa. InstallKit gets the details right — including the cases other widgets ignore.</p></div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <!-- MATRIX -->
+  <section class="wrap section" id="matrix">
+    <div class="sh"><span class="eyebrow zl-eyebrow" data-i18n="mx_eye">Coverage</span>
+      <h2 data-i18n="mx_h2">The exact path, per platform</h2>
+      <p data-i18n="mx_p">A native prompt when the browser supports it; the real, current manual steps when it doesn’t; and an honest redirect when installing simply isn’t possible.</p></div>
+    <div class="matrix" id="matrix-grid"></div>
+  </section>
+
+  <!-- DOCS -->
+  <section class="wrap section" id="docs">
+    <div class="sh"><span class="eyebrow zl-eyebrow" data-i18n="dc_eye">Integration</span>
+      <h2 data-i18n="dc_h2">Drop in, then tune it</h2>
+      <p data-i18n="dc_p">Works as-is with one tag. Configure it with data-attributes or the JS API.</p></div>
+
+    <div class="docs">
+      <div class="code">
+        <div class="bar"><span class="fn" data-i18n="dc_recommended">recommended — capture the prompt early</span><button class="copy" id="copyFull" data-i18n="copy">Copy</button></div>
+        <pre id="fullSnippet"><span class="t-cm">&lt;!-- 1 · capture Chrome's install event before our script loads --&gt;</span>
+<span class="t-tag">&lt;script&gt;</span>window.__ik=window.__ik||{};addEventListener(<span class="t-str">'beforeinstallprompt'</span>,e=&gt;{e.preventDefault();__ik.deferred=e},{once:<span class="t-at">true</span>});<span class="t-tag">&lt;/script&gt;</span>
+
+<span class="t-cm">&lt;!-- 2 · the widget --&gt;</span>
+<span class="t-tag">&lt;script</span> <span class="t-at">src</span>=<span class="t-str">"https://install.zlef.fr/v1/install-kit.js"</span>
+        <span class="t-at">data-app-name</span>=<span class="t-str">"Your App"</span>
+        <span class="t-at">data-position</span>=<span class="t-str">"bottom-right"</span>
+        <span class="t-at">data-accent</span>=<span class="t-str">"#9dae50"</span><span class="t-tag">&gt;&lt;/script&gt;</span></pre>
+      </div>
+
+      <div class="zl-card">
+        <h3 class="zl-card__title" data-i18n="dc_attrs">data-* attributes</h3>
+        <div style="overflow-x:auto">
+        <table class="dtable">
+          <thead><tr><th>Attribute</th><th data-i18n="dc_default">Default</th><th data-i18n="dc_what">What it does</th></tr></thead>
+          <tbody>
+            <tr><td><code>data-app-name</code></td><td>—</td><td class="desc" data-i18n="a_app">Your app's name, used throughout the copy.</td></tr>
+            <tr><td><code>data-icon</code></td><td>—</td><td class="desc" data-i18n="a_icon">URL of a square icon shown in the sheet header.</td></tr>
+            <tr><td><code>data-position</code></td><td><code>bottom-right</code></td><td class="desc" data-i18n="a_pos">Launcher position: bottom-right / -left / -center / inline.</td></tr>
+            <tr><td><code>data-accent</code></td><td>olive</td><td class="desc" data-i18n="a_accent">Accent colour (any CSS colour) to match your brand.</td></tr>
+            <tr><td><code>data-theme</code></td><td><code>auto</code></td><td class="desc" data-i18n="a_theme">auto / dark / light.</td></tr>
+            <tr><td><code>data-mode</code></td><td><code>auto</code></td><td class="desc" data-i18n="a_mode">auto shows a launcher; manual = you call InstallKit.open().</td></tr>
+            <tr><td><code>data-delay</code></td><td><code>1200</code></td><td class="desc" data-i18n="a_delay">ms before the launcher appears.</td></tr>
+            <tr><td><code>data-remind-after</code></td><td><code>3</code></td><td class="desc" data-i18n="a_remind">Days to stay hidden after a visitor dismisses it.</td></tr>
+            <tr><td><code>data-analytics</code></td><td><code>false</code></td><td class="desc" data-i18n="a_an">Opt-in anonymous funnel (counts only, no PII).</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="zl-card">
+        <h3 class="zl-card__title" data-i18n="dc_api">JavaScript API</h3>
+        <div style="overflow-x:auto">
+        <table class="dtable">
+          <tbody>
+            <tr><td><code>InstallKit.open()</code></td><td class="desc" data-i18n="api_open">Open the install sheet on demand (e.g. from your own button).</td></tr>
+            <tr><td><code>InstallKit.canInstall()</code></td><td class="desc" data-i18n="api_can">true unless already installed or unsupported.</td></tr>
+            <tr><td><code>InstallKit.env()</code></td><td class="desc" data-i18n="api_env">The full detection object (os, browser, method…).</td></tr>
+            <tr><td><code>InstallKit.on(evt, fn)</code></td><td class="desc" data-i18n="api_on">Events: ready, open, close, choice, installed, dismiss.</td></tr>
+            <tr><td><code>InstallKit.config({…})</code></td><td class="desc" data-i18n="api_cfg">Override config at runtime.</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECK -->
+  <section class="wrap section" id="check">
+    <div class="sh"><span class="eyebrow zl-eyebrow" data-i18n="ck_eye">Free tool</span>
+      <h2 data-i18n="ck_h2">Is your site installable?</h2>
+      <p data-i18n="ck_p">We fetch your page and manifest and check it against the baseline every browser requires before it will offer an install.</p></div>
+    <div class="checker">
+      <div class="row">
+        <input class="zl-input" id="ckUrl" type="url" inputmode="url" placeholder="https://example.com" autocomplete="off">
+        <button class="zl-btn zl-btn--primary" id="ckBtn" data-i18n="ck_btn">Check</button>
+      </div>
+      <div class="result" id="ckResult"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="wrap inner">
+    <span>InstallKit · <a href="https://zlef.fr">zlef.fr</a></span>
+    <span><a href="#docs" data-i18n="nav_docs">Docs</a> · <a href="https://github.com/zlef-fr/installkit" target="_blank" rel="noopener">GitHub</a> · <span data-i18n="ft_free">Free & open source</span></span>
+  </div>
+</footer>
+
+<script src="/js/landing.js?v=1" type="module"></script>
+<!-- dogfood: the widget itself, manual mode (the hero button drives it) -->
+<script src="/v1/install-kit.js" data-app-name="InstallKit" data-mode="manual"></script>
+</body>
+</html>
