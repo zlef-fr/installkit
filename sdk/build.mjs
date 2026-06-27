@@ -12,7 +12,7 @@ mkdirSync(outDir, { recursive: true });
 const files = readdirSync(srcDir).filter(f => f.endsWith('.js')).sort();
 const parts = files.map(f => `/* ---- ${f} ---- */\n` + readFileSync(join(srcDir, f), 'utf8'));
 
-const banner = `/*! InstallKit SDK — accurate PWA install instructions. install.zlef.fr | MIT */`;
+const banner = `/*! InstallKit SDK — accurate PWA install instructions. installkit.zlef.fr | MIT */`;
 const bundle = `${banner}\n;(function(){\n"use strict";\n${parts.join('\n\n')}\n})();\n`;
 
 writeFileSync(join(outDir, 'install-kit.js'), bundle);

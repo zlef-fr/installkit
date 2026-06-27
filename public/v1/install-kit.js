@@ -1,4 +1,4 @@
-/*! InstallKit SDK — accurate PWA install instructions. install.zlef.fr | MIT */
+/*! InstallKit SDK — accurate PWA install instructions. installkit.zlef.fr | MIT */
 ;(function(){
 "use strict";
 /* ---- 00-core.js ---- */
