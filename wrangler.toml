@@ -1,0 +1,9 @@
+# Deploy the whole InstallKit demo (landing + SDK + checker) on Cloudflare Pages,
+# free, with no always-on server:
+#   npx wrangler pages deploy
+# The static site is served from ./public; the API in ./functions runs as
+# Pages Functions. To collect the opt-in funnel, bind a KV namespace named
+# IK_STATS in the Pages dashboard (otherwise /api/event is a harmless no-op).
+name = "installkit"
+compatibility_date = "2024-09-01"
+pages_build_output_dir = "public"

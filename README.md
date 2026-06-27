@@ -64,6 +64,44 @@ careful UA fallback) and picks **one** install path:
 It handles the cases generic banners get wrong — **iPadOS that reports itself as a
 Mac**, in-app browsers, macOS Safari's "Add to Dock", Firefox honesty.
 
+## Serverless & free
+
+InstallKit's widget is **100% client-side** — detection, instructions and the UI
+all run in the browser. It makes **no network calls** except the optional,
+off-by-default analytics beacon. So you never need a server to use it. Three free
+ways to ship it:
+
+**1 · Embed from a free CDN — zero infrastructure**
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/zlef-fr/installkit@v1.0.0/public/v1/install-kit.js"
+        data-app-name="Your App"></script>
+```
+
+jsDelivr serves the file straight from the public repo, globally cached, free.
+Pin a tag (`@v1.0.0`) for an immutable URL. unpkg / Statically work the same way.
+
+**2 · Self-host the file — any static host**
+
+`install-kit.js` is a single static file with no dependencies. Drop it on GitHub
+Pages, Cloudflare Pages, Netlify, Vercel, an S3 bucket — anything that serves a
+file. No backend, no build.
+
+**3 · Deploy the whole demo (incl. the checker) on Cloudflare Pages — free**
+
+The only server-side features — the installability checker (`/api/check`) and the
+opt-in funnel (`/api/event`) — ship as **Cloudflare Pages Functions** in
+[`functions/`](functions/). Point Cloudflare Pages at this repo (build output
+directory: `public`) or run `npx wrangler pages deploy`. You get the landing, the
+SDK and the serverless checker on the free tier — no always-on server. (The
+`express` / `better-sqlite3` deps are only for the optional self-hosted
+`server.js`; the serverless paths need neither.)
+
+> Analytics is opt-in (`data-analytics`). Without `data-endpoint` it targets the
+> origin the script was loaded from, so a CDN-only embed simply collects nothing
+> until you point it at your own collector (e.g. the Pages Function above with an
+> `IK_STATS` KV namespace bound).
+
 ## Project layout
 
 ```
