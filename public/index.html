@@ -6,19 +6,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>InstallKit — accurate “install as an app” instructions, as a drop-in widget</title>
 <meta name="description" content="Drop one script tag onto any site and visitors get the exact, correct steps to install it as an app — tuned to their real device and browser. Native one-tap where supported, precise manual steps everywhere else.">
-<link rel="canonical" href="https://install.zlef.fr/">
+<link rel="canonical" href="https://installkit.zlef.fr/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://install.zlef.fr/">
+<meta property="og:site_name" content="InstallKit">
+<meta property="og:url" content="https://installkit.zlef.fr/">
 <meta property="og:title" content="InstallKit — accurate PWA install instructions widget">
 <meta property="og:description" content="One script tag. Every visitor sees the exact steps to install your web app on their device — iPhone, Android, desktop, even inside in-app browsers.">
-<meta property="og:image" content="https://assets.zlef.fr/og-default.png">
+<meta property="og:image" content="https://installkit.zlef.fr/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="InstallKit — tell every visitor exactly how to install your app">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="InstallKit — accurate PWA install instructions widget">
 <meta name="twitter:description" content="Drop-in SDK that shows every visitor the exact way to install your app on their device.">
-<meta name="twitter:image" content="https://assets.zlef.fr/og-default.png">
-<link rel="icon" href="https://assets.zlef.fr/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="https://assets.zlef.fr/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="https://assets.zlef.fr/apple-touch-icon.png">
+<meta name="twitter:image" content="https://installkit.zlef.fr/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/fav64.png" sizes="64x64" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <!--/zlef-seo-->
 <meta name="theme-color" content="#06060a">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -31,7 +35,7 @@
 <header class="hdr">
   <div class="inner">
     <a class="brand" href="/" aria-label="InstallKit home">
-      <span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 4 5-4"/><path d="M5 20h14"/></svg></span>
+      <span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v9"/><path d="m8 10 4 4 4-4"/><path d="M6 16v3h12v-3"/></svg></span>
       InstallKit
     </a>
     <nav class="nav">
@@ -70,7 +74,7 @@
     <div class="code reveal">
       <div class="bar"><span class="fn">index.html</span><button class="copy" id="copyHero" data-i18n="copy">Copy</button></div>
       <pre id="heroSnippet"><span class="t-cm">&lt;!-- add before &lt;/body&gt; --&gt;</span>
-<span class="t-tag">&lt;script</span> <span class="t-at">src</span>=<span class="t-str">"https://install.zlef.fr/v1/install-kit.js"</span>
+<span class="t-tag">&lt;script</span> <span class="t-at">src</span>=<span class="t-str">"https://installkit.zlef.fr/v1/install-kit.js"</span>
         <span class="t-at">data-app-name</span>=<span class="t-str">"Your App"</span><span class="t-tag">&gt;&lt;/script&gt;</span></pre>
     </div>
   </section>
@@ -104,7 +108,7 @@
 <span class="t-tag">&lt;script&gt;</span>window.__ik=window.__ik||{};addEventListener(<span class="t-str">'beforeinstallprompt'</span>,e=&gt;{e.preventDefault();__ik.deferred=e},{once:<span class="t-at">true</span>});<span class="t-tag">&lt;/script&gt;</span>
 
 <span class="t-cm">&lt;!-- 2 · the widget --&gt;</span>
-<span class="t-tag">&lt;script</span> <span class="t-at">src</span>=<span class="t-str">"https://install.zlef.fr/v1/install-kit.js"</span>
+<span class="t-tag">&lt;script</span> <span class="t-at">src</span>=<span class="t-str">"https://installkit.zlef.fr/v1/install-kit.js"</span>
         <span class="t-at">data-app-name</span>=<span class="t-str">"Your App"</span>
         <span class="t-at">data-position</span>=<span class="t-str">"bottom-right"</span>
         <span class="t-at">data-accent</span>=<span class="t-str">"#9dae50"</span><span class="t-tag">&gt;&lt;/script&gt;</span></pre>

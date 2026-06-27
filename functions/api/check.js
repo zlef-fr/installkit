@@ -7,7 +7,7 @@
 // resolved via DNS-over-HTTPS and rejected if any A/AAAA address is loopback,
 // private, link-local, ULA, IPv4-mapped-private, or cloud metadata. Redirects
 // are followed manually so each Location is re-validated.
-const UA = 'InstallKit-Checker/1.0 (+https://install.zlef.fr)';
+const UA = 'InstallKit-Checker/1.0 (+https://installkit.zlef.fr)';
 const CORS = { 'access-control-allow-origin': '*' };
 const MAX_HOPS = 5;
 

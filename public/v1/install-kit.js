@@ -32,7 +32,7 @@ var SDK_ORIGIN = (function () {
   try {
     if (SDK_SCRIPT && SDK_SCRIPT.src) return new URL(SDK_SCRIPT.src).origin;
   } catch (e) {}
-  return 'https://install.zlef.fr';
+  return 'https://installkit.zlef.fr';
 })();
 
 function ce(tag, props, kids) {

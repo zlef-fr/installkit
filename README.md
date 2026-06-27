@@ -7,20 +7,20 @@ way to install it as an app on **their** real device: a native one-tap prompt
 where the browser supports it, precise manual steps everywhere else, and an
 honest message when installing simply isn't possible.
 
-Live: **<https://install.zlef.fr>** · ~13 kB gzipped · zero dependencies · MIT.
+Live: **<https://installkit.zlef.fr>** · ~13 kB gzipped · zero dependencies · MIT.
 
 ## Quick start
 
 ```html
 <!-- add before </body> -->
-<script src="https://install.zlef.fr/v1/install-kit.js" data-app-name="Your App"></script>
+<script src="https://installkit.zlef.fr/v1/install-kit.js" data-app-name="Your App"></script>
 ```
 
 Recommended (captures Chrome's install event before our script loads):
 
 ```html
 <script>window.__ik=window.__ik||{};addEventListener('beforeinstallprompt',e=>{e.preventDefault();__ik.deferred=e},{once:true});</script>
-<script src="https://install.zlef.fr/v1/install-kit.js"
+<script src="https://installkit.zlef.fr/v1/install-kit.js"
         data-app-name="Your App" data-position="bottom-right" data-accent="#9dae50"></script>
 ```
 

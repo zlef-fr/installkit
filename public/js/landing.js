@@ -128,8 +128,8 @@ function wireCopy(btnId, text) {
     setTimeout(() => { b.textContent = o; }, 1600);
   });
 }
-wireCopy('copyHero', `<script src="https://install.zlef.fr/v1/install-kit.js" data-app-name="Your App"><\/script>`);
-wireCopy('copyFull', `<script>window.__ik=window.__ik||{};addEventListener('beforeinstallprompt',e=>{e.preventDefault();__ik.deferred=e},{once:true});<\/script>\n<script src="https://install.zlef.fr/v1/install-kit.js" data-app-name="Your App" data-position="bottom-right" data-accent="#9dae50"><\/script>`);
+wireCopy('copyHero', `<script src="https://installkit.zlef.fr/v1/install-kit.js" data-app-name="Your App"><\/script>`);
+wireCopy('copyFull', `<script>window.__ik=window.__ik||{};addEventListener('beforeinstallprompt',e=>{e.preventDefault();__ik.deferred=e},{once:true});<\/script>\n<script src="https://installkit.zlef.fr/v1/install-kit.js" data-app-name="Your App" data-position="bottom-right" data-accent="#9dae50"><\/script>`);
 wireCopy('copyCdn', `<script src="https://cdn.jsdelivr.net/gh/zlef-fr/installkit@v1.0.2/public/v1/install-kit.js" data-app-name="Your App"><\/script>`);
 
 /* checker */

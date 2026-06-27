@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "InstallKit — drop-in SDK widget showing accurate per-device PWA install instructions. Works fully serverless.",
-  "homepage": "https://install.zlef.fr",
+  "homepage": "https://installkit.zlef.fr",
   "repository": { "type": "git", "url": "https://github.com/zlef-fr/installkit.git" },
   "license": "MIT",
   "keywords": ["pwa", "install", "add-to-home-screen", "beforeinstallprompt", "a2hs", "web-component", "serverless"],

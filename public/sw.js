@@ -1,4 +1,4 @@
-// Minimal offline shell so install.zlef.fr is itself an installable PWA
+// Minimal offline shell so installkit.zlef.fr is itself an installable PWA
 // (lets the landing demo the real native one-tap install path).
 //
 // Strategy: NETWORK-FIRST for HTML/navigations so the landing is never stale when
