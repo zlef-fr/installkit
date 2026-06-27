@@ -514,12 +514,12 @@ function widgetCSS() {
   .scrim.show{ opacity:1; }
   @media(min-width:721px){ .scrim{ align-items:center; } }
 
-  .sheet{ width:100%; max-width:460px; background:var(--ik-bg); color:var(--ik-text);
+  .sheet{ width:100%; max-width:none; background:var(--ik-bg); color:var(--ik-text);
     border:1px solid var(--ik-line); border-bottom:none; border-radius:18px 18px 0 0;
-    box-shadow:0 -10px 50px rgba(0,0,0,.5); padding:22px 22px 26px;
+    box-shadow:0 -10px 50px rgba(0,0,0,.5); padding:22px 22px max(26px,env(safe-area-inset-bottom));
     transform:translateY(100%); transition:transform .3s cubic-bezier(.22,.61,.36,1);
-    max-height:92vh; overflow:auto; }
-  @media(min-width:721px){ .sheet{ border-radius:18px; border-bottom:1px solid var(--ik-line);
+    max-height:88dvh; overflow:auto; }
+  @media(min-width:721px){ .sheet{ max-width:460px; border-radius:18px; border-bottom:1px solid var(--ik-line);
     transform:translateY(16px); opacity:0; transition:transform .26s,opacity .26s; box-shadow:0 24px 70px rgba(0,0,0,.6); } }
   .scrim.show .sheet{ transform:none; opacity:1; }
 
