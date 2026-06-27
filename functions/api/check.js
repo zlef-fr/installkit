@@ -2,26 +2,74 @@
 // Workers-compatible port of lib/check.js (no node: APIs). Lets the whole
 // InstallKit demo, including the installability checker, run free & serverless
 // on Cloudflare Pages. Deploy: connect the repo, build output dir = `public`.
+//
+// SSRF-hardened: every URL (and every redirect hop, and the manifest URL) is
+// resolved via DNS-over-HTTPS and rejected if any A/AAAA address is loopback,
+// private, link-local, ULA, IPv4-mapped-private, or cloud metadata. Redirects
+// are followed manually so each Location is re-validated.
 const UA = 'InstallKit-Checker/1.0 (+https://install.zlef.fr)';
 const CORS = { 'access-control-allow-origin': '*' };
+const MAX_HOPS = 5;
 
-function blockedHost(host) {
-  host = (host || '').toLowerCase();
-  if (!host || host === 'localhost' || host.endsWith('.local') || host.endsWith('.internal')) return true;
-  if (/^\d+\.\d+\.\d+\.\d+$/.test(host)) {
-    if (/^(127|10|0)\./.test(host) || /^192\.168\./.test(host) || /^169\.254\./.test(host)) return true;
-    if (/^172\.(1[6-9]|2\d|3[01])\./.test(host)) return true;
+function isPrivateIp(ip) {
+  ip = String(ip).toLowerCase().trim();
+  if (/^\d+\.\d+\.\d+\.\d+$/.test(ip)) {
+    if (/^(0|10|127)\./.test(ip) || /^192\.168\./.test(ip) || /^169\.254\./.test(ip)) return true;
+    if (/^172\.(1[6-9]|2\d|3[01])\./.test(ip)) return true;
+    if (/^100\.(6[4-9]|[7-9]\d|1[01]\d|12[0-7])\./.test(ip)) return true; // CGNAT 100.64/10
+    return false;
   }
+  // Any "::"-prefixed address is special/reserved (loopback ::1, unspecified ::,
+  // IPv4-mapped ::ffff:*, IPv4-compatible ::x) — global IPv6 is 2000::/3. Block all.
+  if (ip.startsWith('::')) return true;
+  if (/^fe[89ab]/.test(ip)) return true;              // fe80::/10 link-local
+  if (/^f[cd]/.test(ip)) return true;                 // fc00::/7 unique-local
   return false;
 }
 
-async function fetchText(url, timeout = 8000) {
-  const ctrl = new AbortController();
-  const to = setTimeout(() => ctrl.abort(), timeout);
-  try {
-    const r = await fetch(url, { signal: ctrl.signal, headers: { 'user-agent': UA, accept: '*/*' }, redirect: 'follow', cf: { cacheTtl: 0 } });
-    return { ok: r.ok, status: r.status, body: await r.text(), finalUrl: r.url };
-  } finally { clearTimeout(to); }
+function isIpLiteral(h) { return /^\d+\.\d+\.\d+\.\d+$/.test(h) || h.includes(':'); }
+
+// Resolve via Cloudflare DoH and reject if ANY address is non-public. DNS failures
+// are treated as unsafe (fail closed) — these are public sites that must resolve.
+async function assertPublicHost(host) {
+  host = String(host).replace(/^\[|\]$/g, '').replace(/\.$/, '').toLowerCase(); // strip IPv6 brackets + trailing dot
+  if (!host || host === 'localhost' || host.endsWith('.local') || host.endsWith('.internal') || host.endsWith('.localhost')) throw new Error('Host not allowed');
+  if (isIpLiteral(host)) { if (isPrivateIp(host)) throw new Error('Private address not allowed'); return; }
+  let resolved = 0;
+  for (const type of ['A', 'AAAA']) {
+    let j;
+    try {
+      const r = await fetch(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(host)}&type=${type}`, { headers: { accept: 'application/dns-json' } });
+      j = await r.json();
+    } catch { throw new Error('Could not resolve host'); }
+    for (const ans of (j.Answer || [])) {
+      if (ans.type === 1 || ans.type === 28) { resolved++; if (isPrivateIp(ans.data)) throw new Error('Resolves to a private address'); }
+    }
+  }
+  if (!resolved) throw new Error('Host does not resolve');
+}
+
+// Fetch with manual redirects; validate scheme + host on the initial URL and on
+// every hop. Returns the final response body.
+async function safeFetch(rawUrl, timeout = 8000) {
+  let url = new URL(rawUrl);
+  for (let hop = 0; hop <= MAX_HOPS; hop++) {
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') throw new Error('Only http(s) URLs are allowed');
+    await assertPublicHost(url.hostname);
+    const ctrl = new AbortController();
+    const to = setTimeout(() => ctrl.abort(), timeout);
+    let r;
+    try {
+      r = await fetch(url.toString(), { signal: ctrl.signal, redirect: 'manual', headers: { 'user-agent': UA, accept: '*/*' }, cf: { cacheTtl: 0 } });
+    } finally { clearTimeout(to); }
+    if (r.status >= 300 && r.status < 400 && r.headers.get('location')) {
+      if (hop === MAX_HOPS) throw new Error('Too many redirects');
+      url = new URL(r.headers.get('location'), url);
+      continue;
+    }
+    return { ok: r.ok, status: r.status, body: await r.text(), finalUrl: url.toString() };
+  }
+  throw new Error('Too many redirects');
 }
 
 function findManifestHref(html) {
@@ -35,7 +83,6 @@ async function checkSite(rawUrl) {
   let u;
   try { u = new URL(rawUrl); } catch { throw new Error('Invalid URL'); }
   if (u.protocol !== 'http:' && u.protocol !== 'https:') throw new Error('Only http(s) URLs are allowed');
-  if (blockedHost(u.hostname)) throw new Error('Host not allowed');
   const url = u.toString();
 
   const out = { url, https: url.startsWith('https://'), checks: [], manifest: null, installable: false, score: 0 };
@@ -43,7 +90,7 @@ async function checkSite(rawUrl) {
   add('https', out.https, 'Served over HTTPS', out.https ? '' : 'PWAs must be served over HTTPS (or localhost).');
 
   let page;
-  try { page = await fetchText(url); }
+  try { page = await safeFetch(url); }
   catch (e) { add('reach', false, 'Page reachable', e.message); out.error = e.message; out.score = score(out); return out; }
   add('reach', page.ok, 'Page reachable', page.ok ? '' : `HTTP ${page.status}`);
 
@@ -51,17 +98,14 @@ async function checkSite(rawUrl) {
   add('manifest-link', !!href, 'Manifest <link> present', href ? '' : 'Add <link rel="manifest" href="…"> in the <head>.');
   if (!href) { out.score = score(out); return out; }
 
-  let manUrl;
-  try { manUrl = new URL(href, page.finalUrl || url); if (blockedHost(manUrl.hostname)) throw new Error('Manifest host not allowed'); manUrl = manUrl.toString(); }
-  catch (e) { add('manifest-fetch', false, 'Manifest fetched', e.message); out.score = score(out); return out; }
-
   let man;
   try {
-    const mr = await fetchText(manUrl);
+    const manUrl = new URL(href, page.finalUrl || url).toString();
+    const mr = await safeFetch(manUrl);
     add('manifest-fetch', mr.ok, 'Manifest fetched', mr.ok ? '' : `HTTP ${mr.status}`);
     man = JSON.parse(mr.body);
     out.manifest = { url: manUrl };
-  } catch { add('manifest-fetch', false, 'Manifest valid JSON', 'Could not parse manifest JSON.'); out.score = score(out); return out; }
+  } catch (e) { add('manifest-fetch', false, 'Manifest fetched', e.message || 'Could not parse manifest JSON.'); out.score = score(out); return out; }
 
   const name = man.name || man.short_name;
   add('name', !!name, 'Has a name', name ? `“${name}”` : 'Set "name" or "short_name".');
