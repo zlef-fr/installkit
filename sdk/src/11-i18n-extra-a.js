@@ -63,7 +63,7 @@ I18N.es = {
 I18N.de = {
   install_app: '{app} installieren',
   install_this: 'Diese App installieren',
-  add_to_home: 'Zum Home-Bildschirm',
+  add_to_home: 'Zum Home-Bildschirm hinzufügen',
   subtitle_native: 'Installiere die App für schnelleren Zugriff, Offline-Nutzung und Vollbild.',
   subtitle_manual: 'Mit wenigen Tippern fügst du {app} zu deinem Gerät hinzu — ohne App Store.',
   install_now: 'Installieren',

@@ -72,7 +72,7 @@ var I18N = {
   fr: {
     install_app: 'Installer {app}',
     install_this: 'Installer cette application',
-    add_to_home: 'À l’écran d’accueil',
+    add_to_home: 'Ajouter à l’écran d’accueil',
     subtitle_native: 'Installez l’app pour un accès plus rapide, un usage hors-ligne et le plein écran.',
     subtitle_manual: 'Quelques touches suffisent pour ajouter {app} à votre appareil — sans passer par un store.',
     install_now: 'Installer',

@@ -131,7 +131,7 @@ var I18N = {
   fr: {
     install_app: 'Installer {app}',
     install_this: 'Installer cette application',
-    add_to_home: 'À l’écran d’accueil',
+    add_to_home: 'Ajouter à l’écran d’accueil',
     subtitle_native: 'Installez l’app pour un accès plus rapide, un usage hors-ligne et le plein écran.',
     subtitle_manual: 'Quelques touches suffisent pour ajouter {app} à votre appareil — sans passer par un store.',
     install_now: 'Installer',
@@ -268,7 +268,7 @@ I18N.es = {
 I18N.de = {
   install_app: '{app} installieren',
   install_this: 'Diese App installieren',
-  add_to_home: 'Zum Home-Bildschirm',
+  add_to_home: 'Zum Home-Bildschirm hinzufügen',
   subtitle_native: 'Installiere die App für schnelleren Zugriff, Offline-Nutzung und Vollbild.',
   subtitle_manual: 'Mit wenigen Tippern fügst du {app} zu deinem Gerät hinzu — ohne App Store.',
   install_now: 'Installieren',
@@ -505,7 +505,7 @@ I18N.nl = {
 I18N.ru = {
   install_app: 'Установить {app}',
   install_this: 'Установить это приложение',
-  add_to_home: 'На главный экран',
+  add_to_home: 'Добавить на главный экран',
   subtitle_native: 'Установите приложение для быстрого доступа, работы офлайн и полноэкранного режима.',
   subtitle_manual: 'Несколько касаний — и {app} на вашем устройстве, без магазина приложений.',
   install_now: 'Установить',

@@ -74,12 +74,13 @@ ways to ship it:
 **1 · Embed from a free CDN — zero infrastructure**
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/zlef-fr/installkit@v1.0.0/public/v1/install-kit.js"
+<script src="https://cdn.jsdelivr.net/gh/zlef-fr/installkit@v1.0.1/public/v1/install-kit.js"
         data-app-name="Your App"></script>
 ```
 
 jsDelivr serves the file straight from the public repo, globally cached, free.
-Pin a tag (`@v1.0.0`) for an immutable URL. unpkg / Statically work the same way.
+Pin a tag (`@v1.0.1`) for an immutable URL. Statically (cdn.statically.io/gh/…)
+works the same way.
 
 **2 · Self-host the file — any static host**
 
@@ -108,7 +109,8 @@ SDK and the serverless checker on the free tier — no always-on server. (The
 sdk/src/        SDK source (concatenated into one IIFE by sdk/build.mjs)
   20-detect.js        device/browser detection + method resolution
   30-instructions.js  method+platform → ordered step list
-  10-i18n.js          all UI + step copy (EN + FR)
+  10-i18n.js …        all UI + step copy, 12 languages (en+fr here, the other
+                      ten in 11-i18n-extra-a.js / 12-i18n-extra-b.js)
   40-icons.js         inline step icons
   50-styles.js        shadow-DOM CSS
   60-widget.js        the <install-kit> custom element

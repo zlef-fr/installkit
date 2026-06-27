@@ -134,6 +134,8 @@ a { color: inherit; }
   border-radius: 50%; animation: spin .7s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .muted { color: var(--zl-text-muted); }
+.serverless-note { text-align: center; font-size: 14.5px; margin: 4px auto -2px; max-width: 620px; }
+.serverless-note::before { content: "◷ "; color: var(--zl-accent-soft); }
 
 /* footer */
 .ft { border-top: 1px solid var(--zl-line); padding: 30px 0; color: var(--zl-text-muted); font-size: 14px; }

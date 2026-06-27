@@ -1,6 +1,6 @@
 // Minimal offline shell so install.zlef.fr is itself an installable PWA
 // (lets the landing demo the real native one-tap install path).
-const CACHE = 'installkit-v3';
+const CACHE = 'installkit-v4';
 const SHELL = ['/', '/css/landing.css', '/js/landing.js', '/v1/install-kit.js'];
 
 self.addEventListener('install', (e) => {

@@ -1,6 +1,6 @@
 /* InstallKit landing — i18n, live detection readout, feature/matrix render,
    copy buttons, installability checker, language picker, scroll reveals, SW. */
-import { I18N, LANGS } from './i18n.js?v=3';
+import { I18N, LANGS } from './i18n.js?v=4';
 
 const lang = (() => {
   const ck = (document.cookie.match(/(?:^|;\s*)zl-lang=([^;]+)/) || [])[1];
@@ -130,6 +130,7 @@ function wireCopy(btnId, text) {
 }
 wireCopy('copyHero', `<script src="https://install.zlef.fr/v1/install-kit.js" data-app-name="Your App"><\/script>`);
 wireCopy('copyFull', `<script>window.__ik=window.__ik||{};addEventListener('beforeinstallprompt',e=>{e.preventDefault();__ik.deferred=e},{once:true});<\/script>\n<script src="https://install.zlef.fr/v1/install-kit.js" data-app-name="Your App" data-position="bottom-right" data-accent="#9dae50"><\/script>`);
+wireCopy('copyCdn', `<script src="https://cdn.jsdelivr.net/gh/zlef-fr/installkit@v1.0.1/public/v1/install-kit.js" data-app-name="Your App"><\/script>`);
 
 /* checker */
 const ckBtn = document.getElementById('ckBtn');

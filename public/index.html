@@ -23,7 +23,7 @@
 <meta name="theme-color" content="#06060a">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="stylesheet" href="https://da.zlef.fr/tokens.css">
-<link rel="stylesheet" href="/css/landing.css?v=3">
+<link rel="stylesheet" href="/css/landing.css?v=4">
 </head>
 <body class="zl-body">
 <div class="bg"></div>
@@ -110,6 +110,13 @@
         <span class="t-at">data-accent</span>=<span class="t-str">"#9dae50"</span><span class="t-tag">&gt;&lt;/script&gt;</span></pre>
       </div>
 
+      <p class="muted serverless-note" data-i18n="dc_cdn">No backend needed — InstallKit runs entirely in the browser. Load it from a free CDN:</p>
+      <div class="code">
+        <div class="bar"><span class="fn">serverless · CDN</span><button class="copy" id="copyCdn" data-i18n="copy">Copy</button></div>
+        <pre id="cdnSnippet"><span class="t-tag">&lt;script</span> <span class="t-at">src</span>=<span class="t-str">"https://cdn.jsdelivr.net/gh/zlef-fr/installkit@v1.0.1/public/v1/install-kit.js"</span>
+        <span class="t-at">data-app-name</span>=<span class="t-str">"Your App"</span><span class="t-tag">&gt;&lt;/script&gt;</span></pre>
+      </div>
+
       <div class="zl-card">
         <h3 class="zl-card__title" data-i18n="dc_attrs">data-* attributes</h3>
         <div style="overflow-x:auto">
@@ -169,8 +176,8 @@
   </div>
 </footer>
 
-<script src="/js/landing.js?v=3" type="module"></script>
+<script src="/js/landing.js?v=4" type="module"></script>
 <!-- dogfood: the widget itself, manual mode (the hero button drives it) -->
-<script src="/v1/install-kit.js?v=3" data-app-name="InstallKit" data-mode="manual"></script>
+<script src="/v1/install-kit.js?v=4" data-app-name="InstallKit" data-mode="manual"></script>
 </body>
 </html>
